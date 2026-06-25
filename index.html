@@ -148,133 +148,21 @@
             color: #777;
         }
 
-        .signup-form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 14px;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .form-group label {
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .form-group input,
-        .form-group select {
+        /* ── Tally Embed Styling ── */
+        .tally-iframe-container {
             width: 100%;
-            padding: 14px 16px;
-            font-family: 'Alef', sans-serif;
-            font-size: 18px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            background: #f9f9fb;
-            color: #333;
-            transition: all 0.25s ease;
-            direction: rtl;
-            -webkit-appearance: none;
-            appearance: none;
-        }
-
-        .form-group select {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: 14px center;
-            padding-left: 44px;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #8B5CF6;
-            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.12);
-            background: #fff;
-        }
-
-        .form-group input::placeholder {
-            color: #bbb;
-        }
-
-        .submit-btn {
-            padding: 16px;
-            font-family: 'Alef', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #8B5CF6, #a78bfa, #8B5CF6);
-            background-size: 200% 200%;
-            animation: gradient-shift 4s ease infinite;
-            margin-top: 4px;
-            letter-spacing: 0.5px;
-        }
-
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.35);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 32px 20px;
-        }
-
-        .success-message .check-circle {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: #dcfce7;
+            margin-top: 10px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
+            flex-direction: column;
+            align-items: stretch;
+            flex-grow: 1;
         }
 
-        .success-message .check-circle svg {
-            width: 32px;
-            height: 32px;
-            color: #16a34a;
-        }
-
-        .success-message h3 {
-            font-family: 'Alef', sans-serif;
-            font-size: 24px;
-            color: #166534;
-            margin-bottom: 8px;
-        }
-
-        .success-message p {
-            font-size: 18px;
-            color: #15803d;
-            line-height: 1.6;
+        .tally-iframe-container iframe {
+            border: none;
+            width: 100%;
+            background: transparent;
+            flex-grow: 1;
         }
 
         /* ── Social links ── */
@@ -416,29 +304,7 @@
                 font-size: 16px;
             }
 
-            .signup-form {
-                gap: 12px;
-            }
 
-            .form-row {
-                gap: 10px;
-            }
-
-            .form-group label {
-                font-size: 16px;
-            }
-
-            .form-group input,
-            .form-group select {
-                padding: 12px 14px;
-                font-size: 17px;
-                border-radius: 8px;
-            }
-
-            .submit-btn {
-                padding: 14px;
-                font-size: 20px;
-            }
 
             .social-bar {
                 margin-top: 18px;
@@ -485,20 +351,7 @@
                 margin-bottom: 10px;
             }
 
-            .signup-form {
-                gap: 10px;
-            }
 
-            .form-group input,
-            .form-group select {
-                padding: 10px 12px;
-                font-size: 16px;
-            }
-
-            .submit-btn {
-                padding: 12px;
-                font-size: 18px;
-            }
         }
     </style>
 </head>
@@ -542,71 +395,18 @@
                 <p>מלאו את הפרטים ונחזור אליכם בהקדם</p>
             </div>
 
-            <form class="signup-form" id="signupForm" onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <label for="fullName">שם מלא</label>
-                    <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        placeholder="הכניסו את שמכם המלא"
-                        required
-                        autocomplete="name"
-                    >
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">אימייל</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="example@email.com"
-                            required
-                            autocomplete="email"
-                            dir="ltr"
-                            style="text-align: right;"
-                        >
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">טלפון</label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            placeholder="050-0000000"
-                            required
-                            autocomplete="tel"
-                            dir="ltr"
-                            style="text-align: right;"
-                            pattern="[0-9\-\+\s]{9,15}"
-                        >
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="area">אזור מגורים</label>
-                    <select id="area" name="area" required>
-                        <option value="" disabled selected>בחרו אזור</option>
-                        <option value="גוש דן">גוש דן</option>
-                        <option value="השרון">השרון</option>
-                        <option value="השפלה">השפלה</option>
-                        <option value="ירושלים והסביבה">ירושלים והסביבה</option>
-                        <option value="חיפה והקריות">חיפה והקריות</option>
-                        <option value="הדרום">הדרום</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="submit-btn">הצטרפו עכשיו</button>
-            </form>
-
-            <div class="success-message" id="successMessage">
-                <div class="check-circle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <h3>ההרשמה התקבלה בהצלחה!</h3>
-                <p>תודה שהצטרפתם לקהילת להט"ב זהב.<br>ניצור איתכם קשר בקרוב.</p>
+            <!-- Tally Form Embed -->
+            <div class="tally-iframe-container">
+                <iframe 
+                    data-tally-src="https://tally.so/embed/ODg1Jk?transparentBackground=1&dynamicHeight=1&hideTitle=1" 
+                    loading="lazy" 
+                    width="100%" 
+                    height="450" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0" 
+                    title="הרשמה לקהילת להט״ב זהב">
+                </iframe>
             </div>
 
             <div class="social-bar">
@@ -629,13 +429,18 @@
         <p>&copy; 2026 להט"ב זהב - GOLD | LGBTQ+ Golden Agers</p>
     </footer>
 
+    <!-- Tally Embed Script -->
     <script>
-        function handleSubmit(e) {
-            e.preventDefault();
-            document.getElementById('signupForm').style.display = 'none';
-            document.querySelector('.form-header').style.display = 'none';
-            var msg = document.getElementById('successMessage');
-            msg.style.display = 'block';
+        var d = document, w = "https://tally.so/widgets/embed.js", v = function() {
+            "undefined" != typeof Tally ? Tally.loadEmbeds() : d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e) { e.src = e.dataset.tallySrc });
+        };
+        if ("undefined" != typeof Tally) v();
+        else if (d.querySelector('script[src="' + w + '"]') == null) {
+            var s = d.createElement("script");
+            s.src = w;
+            s.onload = v;
+            s.onerror = v;
+            d.body.appendChild(s);
         }
     </script>
 
